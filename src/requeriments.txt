@@ -1,0 +1,14 @@
+autopep8==1.6.0
+mysql-connector-python==8.0.28
+protobuf==3.19.3
+pycodestyle==2.8.0
+PyMySQL==1.0.2
+python-decouple==3.5
+python-dotenv==0.19.2
+toml==0.10.2
+Flask==2.1.2
+Flask-Ext==0.1
+Flask-Login==0.6.1
+Flask-MySQLdb==1.0.1
+Flask-WTF==1.0.1
+WTForms==3.0.1

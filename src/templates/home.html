@@ -1,0 +1,16 @@
+{% extends  './base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+
+{% if current_user.is_authenticated %}
+<h1>Bienvenido, {{ current_user.fullname }}</h1>
+<a class="btn btn-primary" href="{{ url_for('list') }}">Course list</a>
+<a class="btn btn-secondary" href="{{ url_for('logout') }}">Logout</a>
+{%else%}
+<h1>Bienvenido</h1>
+
+{% endif %}
+
+{% endblock %}

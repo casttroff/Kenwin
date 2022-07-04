@@ -1,0 +1,26 @@
+{% extends  './base.html' %}
+
+{% block title %}Courses{% endblock %}
+
+{% block body %}
+<div class="mx-auto col-md-7 pt-3">
+    <table class="table table-bordered table-dark table-responsive">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Code</th>
+                <th scope="col">Name</th>
+                <th scope="col">Credits</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+            <tr>
+                <td>{{ course.code }}</td>
+                <td>{{ course.name }}</td>
+                <td>{{ course.credits }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
