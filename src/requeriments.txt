@@ -12,3 +12,6 @@ Flask-Login==0.6.1
 Flask-MySQLdb==1.0.1
 Flask-WTF==1.0.1
 WTForms==3.0.1
+flask_mysqldb
+flask-mysqldb
+jwt

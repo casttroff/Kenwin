@@ -2,11 +2,10 @@ from flask import Flask, jsonify, render_template, url_for, request, redirect, f
 from flask_mysqldb import MySQL
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 from flask_wtf.csrf import CSRFProtect, generate_csrf, CSRF
-from transfer import course_register, list_courses, courses_db
+from transfer import course_register, list_courses, courses_db, exist_user, user_register
 from config import config
 from functools import wraps
 import datetime, jwt
-import jyserver.Flask as jsf
 
 # Models
 from models.ModelUser import ModelUser
@@ -46,27 +45,39 @@ def load_user(id):
 
 @app.route('/')
 def Index():
-    return redirect(url_for('login'))
+    return redirect(url_for('home'))
 
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        user = User(0, request.form['username'], request.form['password'])
-        logged_user = ModelUser.login(db, user)
-        if logged_user:
-            if logged_user.password:
-                login_user(logged_user)
-                token = jwt.encode({'public_id': logged_user.id, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=20)}, app.config['SECRET_KEY']).decode('utf-8')
-                print(token)
-                return redirect(url_for('home'))
+        if request.form['action'] == 'Iniciar sesión':
+            user = User(None, request.form['username'], request.form['password'])
+            print(user.username, user.fullname)
+            logged_user = ModelUser.login(db, user)
+            if logged_user:
+                if logged_user.password:
+                    login_user(logged_user)
+                    #token = jwt.encode({'public_id': logged_user.id, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=20)}, app.config['SECRET_KEY']).decode('utf-8')
+                    #print(token)
+                    return redirect(url_for('home'))
+                else:
+                    flash('Invalid password')
+                    return render_template('auth/login.html')
             else:
-                flash('Invalid password')
+                flash('User not found')
                 return render_template('auth/login.html')
-        else:
-            flash('User not found')
             return render_template('auth/login.html')
-        return render_template('auth/login.html')
+        elif request.form['action'] == 'Registrarse':
+            user_exist = exist_user(db, request.form['username'])
+            if user_exist:
+                flash('Usuario ya registrado')
+                return render_template('auth/login.html')
+            else:
+                user = User(0, request.form['username'], request.form['password'])
+                user_register(db, user)
+                flash('Usuario registrado')
+                return render_template('auth/login.html')
     else:
         return render_template('auth/login.html')
 
@@ -92,9 +103,37 @@ def logout():
     return redirect(url_for('login'))
 
 
+@app.route('/register')
+def register():
+    user = User(0, request.form['username'], request.form['password'])
+    logged_user = ModelUser.login(db, user)
+    if logged_user:
+        flash('User not found')
+        return render_template('auth/login.html')
+    else:
+        flash('Usuario creado')
+        return redirect(url_for('login'))
+
 @app.route('/home')
 def home():
     return render_template('home.html')
+
+
+@app.route('/productos')
+def productos():
+    return render_template('productos.html')
+
+@app.route('/cart')
+def cart():
+    return render_template('cart.html')
+
+@app.route('/checkout')
+def checkout():
+    return render_template('checkout.html')
+
+@app.route('/product-page')
+def product_desc():
+    return render_template('product-page.html')
 
 
 @app.route('/list', methods = ['GET'])

@@ -1,0 +1,22 @@
+.mt-50{
+    margin-top: 20px;
+}
+.mb-50{
+    margin-bottom: 20px;
+}
+
+
+.bg-teal-400 { 
+    background-color: #26a69a;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+
+.fa {   
+        max-height: 12px;;
+        max-width: 12px;
+        color: #0d6efd;
+}

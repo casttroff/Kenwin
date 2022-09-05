@@ -3,14 +3,187 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
+<main>
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+                aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="img1"></div>
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <h1>WorldGame</h1>
+                        <p>Todo en un solo lugar</p>
+                        <p><a class="btn btn-lg btn-primary" href="/productos">Ofertas</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="class img2"></div>
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Videojuegos</h1>
+                        <p>Los mejores títulos 2022</p>
+                        <p><a class="btn btn-lg btn-primary" href="/productos">Juegos</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="class img3"></div>
+                <div class="container">
+                    <div class="carousel-caption text-end">
+                        <h1>Accesorios y juguetes</h1>
+                        <p>Tendencias en accesorios</p>
+                        <p><a class="btn btn-lg btn-primary" href="productos">Accesorios</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">السابق</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">التالي</span>
+        </button>
+    </div>
+
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+            <div class="col-lg-4">
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
+                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
+                        dy=".3em">140x140</text>
+                </svg>
+
+                <h2 class="fw-normal">Electrónica</h2>
+                <p>Consolas de videojuegos </p>
+                <p><a class="btn btn-primary" href="#">Consolas</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
+                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
+                        dy=".3em">140x140</text>
+                </svg>
+
+                <h2 class="fw-normal">Accesorios</h2>
+                <p>Últimas novedades en accesorios
+                </p>
+                <p><a class="btn btn-primary" href="#">Accesorios</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+                <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
+                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#777" /><text x="50%" y="50%" fill="#777"
+                        dy=".3em">140x140</text>
+                </svg>
+
+                <h2 class="fw-normal">Jugueteria</h2>
+                <p>Todos los artículos para los niños</p>
+                <p><a class="btn btn-primary" href="#">Juguetes</a></p>
+            </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+
+
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading fw-normal lh-1">Electrónica<span class="text-muted"></span></h2>
+                <p class="lead">Nos especializamos en venta 
+                    y reparaciones de productos electrónicos desde 1998</p>
+            </div>
+            <div class="col-md-5">
+                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+                    height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa"
+                        dy=".3em">500x500</text>
+                </svg>
+
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading fw-normal lh-1">Accesorios<span class="text-muted"></span></h2>
+                <p class="lead">Últimas novedades en accesorios</p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+                    height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa"
+                        dy=".3em">500x500</text>
+                </svg>
+
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading fw-normal lh-1">Juguetería<span class="text-muted"></span>
+                </h2>
+                <p class="lead">Todos los artículos para los niños</p>
+            </div>
+            <div class="col-md-5">
+                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
+                    height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa"
+                        dy=".3em">500x500</text>
+                </svg>
+
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- /END THE FEATURETTES -->
+
+    </div><!-- /.container -->
+
+
+    <!-- FOOTER -->
+</main>
+
+{% endblock %}       
 
 {% if current_user.is_authenticated %}
-<h1>Bienvenido, {{ current_user.fullname }}</h1>
+<h1>Bienvenido {{ current_user.username }}! :)</h1>
 <a class="btn btn-primary" href="{{ url_for('list') }}">Course list</a>
-<a class="btn btn-secondary" href="{{ url_for('logout') }}">Logout</a>
+<a class="btn btn-seco" href="{{ url_for('logout') }}">Logout</a>
 {%else%}
-<h1>Bienvenido</h1>
+<h1>Bienvenido! :)</h1>
 
 {% endif %}
 
-{% endblock %}

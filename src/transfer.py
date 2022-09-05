@@ -1,4 +1,5 @@
 import code
+from werkzeug.security import generate_password_hash
 from flask import jsonify, request
 from validations import code_validator, credit_validator, name_validator
 from models.Courses import Course
@@ -67,3 +68,28 @@ def courses_db(db):
         return courses
     except Exception as ex:
         raise (ex)
+
+def exist_user(db, user):
+    try:
+        cursor = db.connection.cursor()
+        sql = "SELECT username FROM user WHERE username = %s"
+        cursor.execute(sql, (user, ))
+        username = cursor.fetchone()
+        if username != None:
+            return username
+        else:
+            return None
+    except Exception as ex:
+        raise ex
+
+
+def user_register(db, user):
+    try:
+        cursor = db.connection.cursor()
+        sql = "INSERT INTO user (id, username, password, fullname) VALUES (%s, %s, %s, %s)"
+        password = generate_password_hash(user.password)
+        args = (None, user.username, password, 'Hello')
+        cursor.execute(sql, args)
+        db.connection.commit()
+    except Exception as ex:
+        raise ex
