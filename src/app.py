@@ -5,7 +5,10 @@ from flask_wtf.csrf import CSRFProtect, generate_csrf, CSRF
 from transfer import course_register, list_courses, courses_db, exist_user, user_register
 from config import config
 from functools import wraps
+import unittest
 import datetime, jwt
+import werkzeug
+werkzeug.cached_property = werkzeug.utils.cached_property
 
 # Models
 from models.ModelUser import ModelUser
@@ -38,6 +41,12 @@ def token_required(f):
     return decorator
 
 
+@app.cli.command()
+def test():
+    tests = unittest.TestLoader().discover('tests')
+    unittest.TextTestRunner().run(tests)
+
+
 @login_mannager.user_loader
 def load_user(id):
     return ModelUser.get_by_id(db, id)
@@ -67,7 +76,6 @@ def login():
             else:
                 flash('User not found')
                 return render_template('auth/login.html')
-            return render_template('auth/login.html')
         elif request.form['action'] == 'Registrarse':
             user_exist = exist_user(db, request.form['username'])
             if user_exist:
