@@ -5,11 +5,11 @@ from flask_wtf.csrf import CSRFProtect, generate_csrf, CSRF
 from transfer import course_register, list_courses, courses_db, exist_user, user_register
 from config import config
 from functools import wraps
+import unittest
 import datetime, jwt
 
 # Models
 from models.ModelUser import ModelUser
-
 # Entities
 from models.entities.User import User
 
@@ -21,6 +21,11 @@ db = MySQL(app)
 
 login_mannager = LoginManager(app)
 
+
+@app.cli.command()
+def test():
+    tests = unittest.TestLoader().discover('tests')
+    unittest.TextTestRunner().run(tests)
 
 def token_required(f):
     @wraps(f)
@@ -44,7 +49,7 @@ def load_user(id):
 
 
 @app.route('/')
-def Index():
+def index():
     return redirect(url_for('home'))
 
 

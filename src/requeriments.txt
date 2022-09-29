@@ -14,4 +14,7 @@ Flask-WTF==1.0.1
 WTForms==3.0.1
 flask_mysqldb
 flask-mysqldb
+flask_bootstrap
+flask-testing
+werkzeug==2.1.2
 jwt
