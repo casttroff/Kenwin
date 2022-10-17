@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Fede\Documents\Python\Trilenio\venv"
+VIRTUAL_ENV="C:\Users\Fede\Documents\Kenwin\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
