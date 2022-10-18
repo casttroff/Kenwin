@@ -6,7 +6,7 @@ PyMySQL==1.0.2
 python-decouple==3.5
 python-dotenv==0.19.2
 toml==0.10.2
-Flask==2.1.2
+Flask==1.1.4
 Flask-Ext==0.1
 Flask-Login==0.6.1
 Flask-MySQLdb==1.0.1
@@ -14,7 +14,13 @@ Flask-WTF==1.0.1
 WTForms==3.0.1
 flask_mysqldb
 flask-mysqldb
+<<<<<<< HEAD
 flask_bootstrap
 flask-testing
 werkzeug==2.1.2
+=======
+flask-testing==0.7.1
+werkzeug==2.1.2
+markupsafe==2.0.1
+>>>>>>> 8ea21d60320e8cc8ae7d381c28e4c334b8d95b8b
 jwt
