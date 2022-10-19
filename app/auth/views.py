@@ -19,7 +19,7 @@ def login():
         username = login_form.username.data
         password = login_form.password.data
         user_doc = get_user(username)
-
+        print(user_doc.to_dict())
         if user_doc.to_dict() is not None:
             password_from_db = user_doc.to_dict()['password']
             if password_from_db == password:

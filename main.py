@@ -4,9 +4,11 @@ from flask_wtf.csrf import CSRFProtect, generate_csrf, CSRF
 from transfer import course_register, list_courses, courses_db, exist_user, user_register
 from functools import wraps
 from app import create_app
-from app.firestore_service import get_users, get_product
+from app.models import ProductModel
+from app.firestore_service import get_product, get_user_products, get_users, get_products, product_put
 import unittest
 import datetime, jwt
+import copy
 
 app = create_app()
 
@@ -59,34 +61,58 @@ def logout():
     return redirect(url_for('auth.login'))
 
 
-@app.route('/register')
-def register():
-    user = User(0, request.form['username'], request.form['password'])
-    logged_user = ModelUser.login(db, user)
-    if logged_user:
-        flash('User not found')
-        return render_template('auth/login.html')
-    else:
-        flash('Usuario creado')
-        return redirect(url_for('auth.login'))
-
-
-@app.route('/productos')
+@app.route('/productos', methods=['GET', 'POST'])
 def productos():
     user_ip = session.get('user_ip')
-    username = current_user.id
+    username = session.get('username')
     context = {
-        'user_ip' : user_ip,
-        'username' : username,
-        'products' : None
+            'user_ip' : user_ip,
+            'username' : username,
+            'products' : get_products()
+        }
+    # for product in context['products']:
+    #     print(product.to_dict()['category'])
+    return render_template('productos.html', **context)
+
+
+@app.route('/add_to_cart/<string:product_id>')
+@login_required
+def add_to_cart(product_id):
+    user_ip = session.get('user_ip')
+    username = current_user.id
+    product_model = ProductModel(username, product_id)
+    product_put(product_model)
+    context = {
+        'user_ip': user_ip,
+        'username': username,
     }
-    if current_user.is_active:
-        context['products'] = get_product(username)
-    return render_template('productos.html')
+    return redirect(url_for('cart'))
+
 
 @app.route('/cart')
 def cart():
-    return render_template('cart.html')
+    user_ip = session.get('user_ip')
+    username = session.get('username')
+    products = []
+    if current_user.is_authenticated:
+        username = current_user.id
+        #Devuelve la cant de clicks en Comprar que hizo un usuario en un producto
+        user_products = get_user_products(username)
+        products = []
+        for user_product in user_products:
+            product_id = user_product.to_dict()['product']
+            product = get_product(product_id)
+            products.append(copy.copy(product))
+            print(product.to_dict()['name'])
+
+    context = {
+        'user_ip': user_ip,
+        'username': username,
+        'user_products' : products
+    }
+    
+    
+    return render_template('cart.html', **context)
 
 
 @app.route('/checkout')

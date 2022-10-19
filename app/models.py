@@ -22,3 +22,9 @@ class UserModel(UserMixin):
         )
 
         return UserModel(user_data)
+
+
+class ProductModel():
+    def __init__(self, username, product):
+        self.username = username
+        self.product = product
